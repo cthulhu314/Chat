@@ -18,8 +18,9 @@ namespace Chat.App
 
             if (type == "server")
             {
-                
-                using (var server = new ChatServer(new Uri("http://localhost:8001/chat")))
+                var address = "http://localhost:8001/chat";
+                if (args.Length == 2) address = args[1];
+                using (var server = new ChatServer(new Uri(address)))
                 {
                     server.Start();
                     Console.WriteLine("Server started and running at:");
